@@ -1,0 +1,18 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata: 
+  labels: 
+    app.kubernetes.io/instance: haddock-nodejs
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: haddock-nodejs 
+  name: haddock-nodejs
+spec:
+  port:
+    targetPort: 3001 
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: haddock-nodejs
+    weight: 100 
